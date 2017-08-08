@@ -2,6 +2,11 @@
 /*			Styles that are specific to the portfolio page 		    */
 /********************************************************************/
 
+main {
+	width: 100%;
+	height: 100%;
+}
+
 main #pollForm {
 	font-family: 'Gentium Basic', serif;
 
@@ -71,4 +76,15 @@ main #pollSubmit {
 	main #pollForm {
 		width: 100%;
 	}
+}
+
+.container {
+	display:flex;
+	
+	flex-direction: column;
+
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
 }
