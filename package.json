@@ -1,26 +1,23 @@
 {
-  "name": "portfolio",
+  "name": "strawpoll-clone",
   "version": "1.0.0",
-  "description": "Poll Website",
-  "main": "index.js",
+  "description": "A strawpoll clone using minimal additional libraries",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CurtisFulton/PortfolioWebsite.git"
+    "url": "git+https://github.com/CurtisFulton/PollWebsite.git"
   },
   "author": "Curtis Fulton",
   "license": "ISC",
-  "dependencies": {
-    "body-parser": "*",
-    "ejs": "*",
-    "express": "*",
-    "express-validator": "^3.2.0",
-    "mongojs": "*"
-  },
   "bugs": {
-    "url": "https://github.com/CurtisFulton/PortfolioWebsite/issues"
+    "url": "https://github.com/CurtisFulton/PollWebsite/issues"
   },
-  "homepage": "https://github.com/CurtisFulton/PortfolioWebsite#readme"
+  "homepage": "https://github.com/CurtisFulton/PollWebsite#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
 }
