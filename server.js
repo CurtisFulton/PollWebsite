@@ -7,6 +7,7 @@ const app = express();
 
 // Routes
 const poll = require('./routes/poll');
+const api = require('./routes/api');
 
 // Public directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -15,7 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 
-app.use('/poll', poll)
+app.use('/poll', poll);
+app.use('/api', api);
 
 const port = 3000;
 

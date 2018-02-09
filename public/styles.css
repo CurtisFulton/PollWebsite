@@ -1,0 +1,39 @@
+html {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #d3d3d3;
+}
+
+header {
+	overflow: auto;
+	height: 15em;
+	background-color: #323232;
+}
+
+.poll-container {
+	width: 40%;
+	margin: auto;
+	margin-top: 1em;
+}
+
+#poll-question {
+	font-size: 2em;
+}
+
+.poll-option {
+	display: flex;
+	flex-direction: row;
+	margin-left: 1em;
+}
+
+.submit-btn {
+	margin-left: 1em;
+}

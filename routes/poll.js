@@ -5,4 +5,8 @@ router.get('/', (req, res) => {
 	res.send('Poll');
 });
 
+router.get('/:id', (req, res) => {
+	
+});
+
 module.exports = router;
