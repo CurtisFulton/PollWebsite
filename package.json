@@ -18,7 +18,12 @@
   "homepage": "https://github.com/CurtisFulton/PollWebsite#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "pg": "^7.4.1"
+    "express-session": "^1.15.6",
+    "pg": "^7.4.1",
+    "req-flash": "0.0.3"
   }
 }

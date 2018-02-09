@@ -3,6 +3,10 @@ const path = require('path');
 
 const bodyParser = require('body-parser');
 
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('req-flash');
+
 const app = express();
 
 // Routes
@@ -12,9 +16,21 @@ const api = require('./routes/api');
 // Public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// View engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Body Parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
+
+app.use(cookieParser());
+app.use(session({ secret : '123', resave : false, saveUninitialized : true }));
+app.use(flash());
+
+app.get('/', (req, res) => {
+	res.render('index', { errors : req.flash('error') });
+});
 
 app.use('/poll', poll);
 app.use('/api', api);

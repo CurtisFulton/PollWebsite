@@ -28,6 +28,10 @@ header {
 	font-size: 2em;
 }
 
+.modal {
+	top: 30% !important;
+}
+
 .poll-option {
 	display: flex;
 	flex-direction: row;

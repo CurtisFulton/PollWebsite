@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Straw Poll Clone</title>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
+
+	<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+	<header>
+		<h1>Straw Poll Clone</h1>
+	</header>
+
+	<div id="error-modal" class="modal">
+		<div class="modal-content">
+			<ul class="collection">
+			<% if (errors) { errors.forEach(function(error) { %>
+				<li class="collection-item"><%= error %></li>
+			<% }) } %>
+			</ul>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect btn-flat">Okay</a>
+		</div>
+	</div>
+
+	<main>
+
+		<form method="post" action="/api/polls/" class="poll-container card-panel">
+			<div class="input-field">
+				<input placeholder="poll-question" id="poll-question" type="text" name="title">
+			</div>
+			<div class="input-field poll-option">
+				<input placeholder="Option 1" type="text" name="option">
+			</div>
+			<div class="input-field poll-option">
+				<input placeholder="Option 2" type="text" name="option">
+			</div>
+			<div class="input-field poll-option">
+				<input placeholder="Option 3" type="text" name="option">
+			</div>
+			<input type="submit" class="btn submit-btn" value="Create Poll"/>
+		</form>
+	</main>
+
+	<footer>
+		
+	</footer>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script type="text/javascript">
+    	$('.modal').modal();
+
+    	if ($('.collection-item').length)
+    		$('#error-modal').modal('open'); 
+
+    </script>
+</body>
+</html>
