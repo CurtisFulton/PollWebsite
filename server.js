@@ -28,11 +28,7 @@ app.use(cookieParser());
 app.use(session({ secret : '123', resave : false, saveUninitialized : true }));
 app.use(flash());
 
-app.get('/', (req, res) => {
-	res.render('index', { errors : req.flash('error') });
-});
-
-app.use('/poll', poll);
+app.use('/', poll);
 app.use('/api', api);
 
 const port = 3000;

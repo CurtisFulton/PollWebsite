@@ -9,13 +9,12 @@ body {
 	min-height: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: #d3d3d3;
+	background-color: #dddddd;
 }
 
 header {
 	overflow: auto;
 	height: 15em;
-	background-color: #323232;
 }
 
 .poll-container {
@@ -35,9 +34,5 @@ header {
 .poll-option {
 	display: flex;
 	flex-direction: row;
-	margin-left: 1em;
-}
-
-.submit-btn {
 	margin-left: 1em;
 }

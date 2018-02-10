@@ -3,10 +3,10 @@
 <head>
 	<title>Straw Poll Clone</title>
 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
 
-	<link rel="stylesheet" href="./styles.css">
+	<link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
 	<header>
@@ -41,6 +41,17 @@
 			<div class="input-field poll-option">
 				<input placeholder="Option 3" type="text" name="option">
 			</div>
+			<div>
+				<input id="multi-select" class="filled-in" type="checkbox" name="multi" value="false"></input>
+				<label for="multi-select">Allow Multiple Answers</label>
+			</div>
+			<div class="input-field">
+				<select name="dupCheck">
+					<option value="none" selected>No spam prevention</option>
+					<option value="ip">IP Duplication checking</option>
+					<option value="cookie">Cookie checking</option>
+				</select>
+			</div>
 			<input type="submit" class="btn submit-btn" value="Create Poll"/>
 		</form>
 	</main>
@@ -54,6 +65,7 @@
 
     <script type="text/javascript">
     	$('.modal').modal();
+    	$('select').material_select();
 
     	if ($('.collection-item').length)
     		$('#error-modal').modal('open'); 

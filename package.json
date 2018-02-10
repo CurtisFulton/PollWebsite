@@ -24,6 +24,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "pg": "^7.4.1",
-    "req-flash": "0.0.3"
+    "req-flash": "0.0.3",
+    "request": "^2.83.0"
   }
 }

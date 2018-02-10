@@ -10,20 +10,67 @@ router.get('/', (req, res) => {
 router.get('/polls/:id', (req, res, next) => {
 	db.getPoll(req.params.id)
 	.then(result => {
-		res.send(result);
+		res.json(result);
 	})
 	.catch(e => res.send("Error, " + e));
+});
+
+router.post('/polls', validatePoll, (req, res) => {
+	db.createPoll(req.poll)
+	.then(result => {
+		res.redirect('/' + result.poll_id);
+	})
+	.catch(e => {
+		console.log(e);
+	})
+});
+
+router.post('/polls/:id', (req, res) => {
+	let vote;
+	if (!(req.body.vote instanceof Array)){
+		vote = new Array(1);
+		vote[0] = parseInt(req.body.vote);
+	} else {
+		let vote = req.body.vote;
+	}
+
+
+	db.getPoll(req.params.id)
+	.then(result => {
+		let votesObj = new Array(result.options.length);
+
+		for (var i = 0; i < votesObj.length; i++) {
+			if (vote.includes(i))
+				votesObj[i] = 1;
+			else
+				votesObj[i] = 0;
+		}
+
+		return db.voteOnPoll(req.params.id, votesObj);
+	})
+	.then(result => {
+		let resultsURL = '/' + req.params.id + '/r';
+		res.redirect(resultsURL);
+	})
+	.catch(e => console.log(e));
+
 });
 
 function validatePoll(req, res, next) {
 	let poll = req.body;
 	let errors = [] 
 
+	// Remove any empty strings
+	for (let i = poll.option.length - 1; i >= 0 ; i--) {
+		if (poll.option[i].trim() == 0) 
+			poll.option.splice(i, 1);
+	}
+
 	if (!poll.title) {
 		errors.push('You must supply a title for the poll');
 	}
 
-	if (!poll.options || poll.options.length < 2) {
+	if (!poll.option || poll.option.length < 2) {
 		errors.push('Enter at least 2 options for the poll');
 	}
 
@@ -31,12 +78,35 @@ function validatePoll(req, res, next) {
 		req.flash('error', errors);
 		res.redirect('/');
 	} else {
+		req.poll = createPollObject(poll.title, poll.option, new Date(), poll.multi, poll.dupCheck);
 		next();
 	}
 }
 
-router.post('/polls', validatePoll, (req, res) => {
-	console.log(req.body)
-});
+function createPollObject(title, options, date, multi, dupCheck) {
+	let votes = new Array(options.length);
+	let dateObj = date || new Date();
+	// Convert date to dbDate
+	dateObj = dateObj.getUTCFullYear() + '-' +
+            ('00' + (dateObj.getUTCMonth() + 1)).slice(-2) + '-' +
+            ('00' + dateObj.getUTCDate()).slice(-2) + ' ' +
+            ('00' + dateObj.getUTCHours()).slice(-2) + ':' +
+            ('00' + dateObj.getUTCMinutes()).slice(-2) + ':' +
+            ('00' + dateObj.getUTCSeconds()).slice(-2);
+
+	for (var i = 0; i <  votes.length; i++) {
+		 votes[i] = 0;
+	}
+
+	return {
+		title : title,
+		options : options,
+		votes : votes,
+		date : dateObj,
+		multi : multi || false,
+		dupCheck : dupCheck || "none"
+	}
+}
+
 
 module.exports = router;

@@ -28,6 +28,31 @@ function getPoll(id) {
 	});
 }
 
+// Inserts a new Poll into the db
+function createPoll(poll) {
+	return new Promise((resolve, reject) => {
+		pool.query('INSERT INTO poll (title, options, votes, date_created, multi, dup_check) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', 
+			[poll.title, poll.options, poll.votes, poll.date, poll.multi, poll.dupCheck])
+		.then(result => {
+			resolve(result.rows[0]);
+		})
+		.catch(e => reject(e));
+	});
+}
+
+// Inserts a new Poll into the db
+function voteOnPoll(pollID, votes) {
+	let query = 'UPDATE poll SET votes = (SELECT array_agg(vote) FROM ( SELECT title, (unnest(votes)::integer + unnest($2::integer[])::integer) AS vote FROM poll WHERE poll_id = $1) as unnested_vote) WHERE poll_id = $1'
+
+	return new Promise((resolve, reject) => {
+		pool.query(query, [pollID, votes])
+		.then(result => {
+			resolve(result.rows[0]);
+		})
+		.catch(e => reject(e));
+	});
+}
+
 // Checks if the user has already voted
 function userHasVoted(id) {
 	// Nothing here yet.
@@ -37,4 +62,6 @@ function userHasVoted(id) {
 
 module.exports = {
 	getPoll : getPoll,
+	createPoll : createPoll,
+	voteOnPoll : voteOnPoll,
 };
