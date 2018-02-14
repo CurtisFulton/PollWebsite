@@ -54,14 +54,26 @@ function voteOnPoll(pollID, votes) {
 }
 
 // Checks if the user has already voted
-function userHasVoted(id) {
-	// Nothing here yet.
+function userHasVoted(pollID, userID) {
+	let query = 'SELECT user_id FROM poll_vote WHERE (poll_id = $1) AND (user_id = $2)';
 
-	return false;
+	return new Promise((resolve, reject) => {
+		pool.query(query, [pollID, userID])
+		.then(result => {
+			resolve(result.rows.length > 0);
+		})
+		.catch(e => reject(e));
+	});
+}
+
+function addUserID(pollID, userID) {
+	pool.query('INSERT INTO poll_vote (user_id, poll_id) VALUES ($1, $2) RETURNING *', [userID, pollID]);
 }
 
 module.exports = {
 	getPoll : getPoll,
 	createPoll : createPoll,
 	voteOnPoll : voteOnPoll,
+	userHasVoted : userHasVoted,
+	addUserID : addUserID
 };

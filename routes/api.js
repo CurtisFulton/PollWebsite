@@ -25,7 +25,7 @@ router.post('/polls', validatePoll, (req, res) => {
 	})
 });
 
-router.post('/polls/:id', (req, res) => {
+router.post('/polls/:id', async (req, res) => {
 	let vote;
 	if (!(req.body.vote instanceof Array)){
 		vote = new Array(1);
@@ -34,26 +34,40 @@ router.post('/polls/:id', (req, res) => {
 		let vote = req.body.vote;
 	}
 
+	let pollID = req.params.id;
+	let userID = (req.headers['x-forwarded-for'] || req.connection.remoteAddress).replace(/\D/g, '');
 
-	db.getPoll(req.params.id)
-	.then(result => {
-		let votesObj = new Array(result.options.length);
+	try {
+		let hasVoted = false;
+		let poll = await db.getPoll(pollID);
+		let checkVote = poll.dup_check == 'ip' || poll.dup_check == 'cookie';
 
-		for (var i = 0; i < votesObj.length; i++) {
-			if (vote.includes(i))
-				votesObj[i] = 1;
-			else
-				votesObj[i] = 0;
+		if (checkVote) {
+			hasVoted = await db.userHasVoted(pollID, userID);
 		}
+		
+		if (!hasVoted){
+			if (checkVote) {
+				db.addUserID(pollID, userID);
+			}
 
-		return db.voteOnPoll(req.params.id, votesObj);
-	})
-	.then(result => {
-		let resultsURL = '/' + req.params.id + '/r';
-		res.redirect(resultsURL);
-	})
-	.catch(e => console.log(e));
+			let votesObj = new Array(poll.options.length);
 
+			for (var i = 0; i < votesObj.length; i++) {
+				if (vote.includes(i))
+					votesObj[i] = 1;
+				else
+					votesObj[i] = 0;
+			}
+
+			var test = await db.voteOnPoll(req.params.id, votesObj);
+		}
+	} catch(e) {
+		console.log(e);
+	}
+
+	let resultsURL = '/' + req.params.id + '/r';
+	res.redirect(resultsURL);
 });
 
 function validatePoll(req, res, next) {
@@ -73,6 +87,8 @@ function validatePoll(req, res, next) {
 	if (!poll.option || poll.option.length < 2) {
 		errors.push('Enter at least 2 options for the poll');
 	}
+
+
 
 	if (errors.length > 0) {
 		req.flash('error', errors);
