@@ -26,12 +26,17 @@ router.post('/polls', validatePoll, (req, res) => {
 });
 
 router.post('/polls/:id', async (req, res) => {
+	let resultsURL = '/' + req.params.id + '/r';
+
 	let vote;
+
 	if (!(req.body.vote instanceof Array)){
 		vote = new Array(1);
 		vote[0] = parseInt(req.body.vote);
 	} else {
-		let vote = req.body.vote;
+		vote = req.body.vote.map((e) => {
+			return parseInt(e);
+		});
 	}
 
 	let pollID = req.params.id;
@@ -47,7 +52,7 @@ router.post('/polls/:id', async (req, res) => {
 		}
 		
 		if (!hasVoted){
-			if (checkVote) {
+			if (checkVote && req.body.vote) {
 				db.addUserID(pollID, userID);
 			}
 
@@ -66,7 +71,6 @@ router.post('/polls/:id', async (req, res) => {
 		console.log(e);
 	}
 
-	let resultsURL = '/' + req.params.id + '/r';
 	res.redirect(resultsURL);
 });
 
@@ -87,8 +91,6 @@ function validatePoll(req, res, next) {
 	if (!poll.option || poll.option.length < 2) {
 		errors.push('Enter at least 2 options for the poll');
 	}
-
-
 
 	if (errors.length > 0) {
 		req.flash('error', errors);

@@ -14,7 +14,7 @@ router.get('/:id', (req, res) => {
 			id : poll.poll_id,
 			title : poll.title,
 			options : poll.options,
-			votes : poll.votes
+			multi : poll.multi
 		});
 	})
 	.catch(err => {
@@ -38,7 +38,7 @@ router.get('/:id/r', (req, res, next) => {
 
 function requestPoll(id) {
 	var reqURL = 'http://localhost:3000/api/polls/' + id;
-	
+
 	return new Promise((resolve, reject) => {
 		request(reqURL, function(err, response, body) {
 			if (err) 
