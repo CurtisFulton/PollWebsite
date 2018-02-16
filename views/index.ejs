@@ -7,6 +7,8 @@
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
 
 	<link rel="stylesheet" href="./styles.css"/>
+
+    <script type="text/javascript" src="./scripts.js" async defer></script>
 </head>
 <body>
 	<header>
@@ -15,14 +17,14 @@
 
 	<div id="error-modal" class="modal">
 		<div class="modal-content">
-			<ul class="collection">
+			<ul id="error-list" class="collection">
 			<% if (errors) { errors.forEach(function(error) { %>
 				<li class="collection-item"><%= error %></li>
 			<% }) } %>
 			</ul>
 		</div>
 		<div class="modal-footer">
-			<a href="#!" class="modal-action modal-close waves-effect btn-flat">Okay</a>
+			<a href="#" class="modal-action modal-close waves-effect btn-flat">Okay</a>
 		</div>
 	</div>
 
@@ -33,13 +35,13 @@
 				<input placeholder="poll-question" id="poll-question" type="text" name="title">
 			</div>
 			<div class="input-field poll-option">
-				<input placeholder="Option 1" type="text" name="option">
+				<input placeholder="Enter a poll option" type="text" name="option">
 			</div>
 			<div class="input-field poll-option">
-				<input placeholder="Option 2" type="text" name="option">
+				<input placeholder="Enter a poll option" type="text" name="option">
 			</div>
 			<div class="input-field poll-option">
-				<input placeholder="Option 3" type="text" name="option">
+				<input placeholder="Enter a poll option" type="text" name="option">
 			</div>
 			<div>
 				<input id="multi-select" class="filled-in" type="checkbox" name="multi" value="false"></input>
@@ -52,7 +54,7 @@
 					<option value="cookie">Cookie checking</option>
 				</select>
 			</div>
-			<input type="submit" class="btn submit-btn" value="Create Poll"/>
+			<input id="poll-submit" type="submit" class="btn submit-btn" value="Create Poll"/>
 		</form>
 	</main>
 
@@ -62,14 +64,11 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		//Materialize JS activation
+		$('.modal').modal();
+		$('select').material_select();
+	</script>
 
-    <script type="text/javascript">
-    	$('.modal').modal();
-    	$('select').material_select();
-
-    	if ($('.collection-item').length)
-    		$('#error-modal').modal('open'); 
-
-    </script>
 </body>
 </html>

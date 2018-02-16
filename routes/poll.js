@@ -38,13 +38,14 @@ router.get('/:id/r', (req, res, next) => {
 
 function requestPoll(id) {
 	var reqURL = 'http://localhost:3000/api/polls/' + id;
-
+	
 	return new Promise((resolve, reject) => {
 		request(reqURL, function(err, response, body) {
 			if (err) 
 				reject(err);
-			else 
+			else {
 				resolve(JSON.parse(body));
+			}
 		});
 	});
 

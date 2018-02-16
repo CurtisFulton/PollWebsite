@@ -29,6 +29,7 @@ header {
 
 .modal {
 	top: 30% !important;
+	width: 30% !important;
 }
 
 .poll-option {

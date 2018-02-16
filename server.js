@@ -28,6 +28,7 @@ app.use(cookieParser());
 app.use(session({ secret : '123', resave : false, saveUninitialized : true }));
 app.use(flash());
 
+app.use('/favicon.ico', () => {});
 app.use('/', poll);
 app.use('/api', api);
 
