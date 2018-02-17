@@ -13,11 +13,11 @@ body {
 
 header {
 	overflow: auto;
-	height: 15em;
+	height: 5em;
 }
 
 .poll-container {
-	width: 35em;
+	width: 90%;
 	margin: auto;
 	margin-top: -3.5em;
 }
@@ -39,4 +39,18 @@ header {
 
 .mt2 {
 	margin-top: 2em;
+}
+
+.mt1 {
+	margin-top: 1em;
+}
+
+@media (min-width: 40em) {
+	.poll-container {
+		width: 40em;
+	}
+
+	header {
+		height: 15em;
+	}
 }
