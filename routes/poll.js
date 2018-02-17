@@ -25,10 +25,14 @@ router.get('/:id', (req, res) => {
 router.get('/:id/r', (req, res, next) => {
 	requestPoll(req.params.id)
 	.then(poll => {
+		let totalVotes = poll.votes.reduce((sum, current) => (sum + current), 0);
+
 		res.render('result', {
+			id : poll.poll_id,
 			title : poll.title,
 			options : poll.options,
-			votes : poll.votes
+			votes : poll.votes,
+			totalVotes : totalVotes
 		});
 	})
 	.catch(err => {

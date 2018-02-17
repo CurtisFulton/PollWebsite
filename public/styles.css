@@ -45,6 +45,10 @@ header {
 	margin-top: 1em;
 }
 
+.subtitle {
+	display: inline-block;
+}
+
 @media (min-width: 40em) {
 	.poll-container {
 		width: 40em;

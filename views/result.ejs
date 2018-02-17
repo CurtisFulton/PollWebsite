@@ -16,7 +16,7 @@
 	<div class="poll-container card-panel">
 		<h4><%= title %></h4>
 
-		<ul class="collection">
+		<ul class="collection mt2">
 			<% for (var i = 0; i < options.length; i++) { %>
 				<li class="collection-item">
 					<span><%= options[i] %>: </span>
@@ -24,6 +24,11 @@
 				</li>
 			<% } %>
 		</ul>
+		<div>
+			<span><h5 class="subtitle">Total Votes: </h5></span> <%= totalVotes %>
+		</div>
+
+		<a href="/<%= id %>" class="btn">Back To Votes</a>
 	</div>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
