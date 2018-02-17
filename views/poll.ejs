@@ -14,11 +14,11 @@
 		<% for (var i = 0; i < options.length; i++) { %>
 			<div>
 				<% if (multi) { %>
-					<input name="vote" type="checkbox" class="filled-in" id="<%= options[i] %>" value="<%= i %>" />
+					<input name="vote" type="checkbox" class="filled-in" id="<%= i %>" value="<%= i %>" />
 				<% } else { %>
-					<input name="vote" type="radio" id="<%= options[i] %>" value="<%= i %>" required />
+					<input name="vote" type="radio" id="<%= i %>" value="<%= i %>" required />
 				<% } %>
-	      		<label for="<%= options[i] %>"><%= options[i] %></label>
+	      		<label for="<%= i %>"><%= options[i] %></label>
 			</div>
 		<% } %>
 		<input type="submit" class="btn submit-btn" value="Vote"/>

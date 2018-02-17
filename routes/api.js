@@ -104,13 +104,6 @@ function validatePoll(req, res, next) {
 function createPollObject(title, options, date, multi, dupCheck) {
 	let votes = new Array(options.length);
 	let dateObj = date || new Date();
-	// Convert date to dbDate
-	dateObj = dateObj.getUTCFullYear() + '-' +
-            ('00' + (dateObj.getUTCMonth() + 1)).slice(-2) + '-' +
-            ('00' + dateObj.getUTCDate()).slice(-2) + ' ' +
-            ('00' + dateObj.getUTCHours()).slice(-2) + ':' +
-            ('00' + dateObj.getUTCMinutes()).slice(-2) + ':' +
-            ('00' + dateObj.getUTCSeconds()).slice(-2);
 
 	for (var i = 0; i <  votes.length; i++) {
 		 votes[i] = 0;
