@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= title %> - Results</title>
-
+	<title><%= title %></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
-</head>
-<body>
-	<h1><%= title %> - results</h1>
 
-	<ul class="collection card-panel">
-		<% for (var i = 0; i < options.length; i++) { %>
-			<li class="collection-item">
-				<span><%= options[i] %>: </span>
-				<span><%= votes[i] %></span>
-			</li>
-		<% } %>
-	</ul>
+	<link rel="stylesheet" href="/styles.css"/>
+
+    <script type="text/javascript" src="/scripts.js" async defer></script>
+</head>
+<body class="blue-grey lighten-5">
+	<header class="blue-grey"></header>
+	<div class="poll-container card-panel">
+		<h4><%= title %> - results</h4>
+
+		<ul class="collection">
+			<% for (var i = 0; i < options.length; i++) { %>
+				<li class="collection-item">
+					<span><%= options[i] %>: </span>
+					<span class="right"><%= votes[i] %></span>
+				</li>
+			<% } %>
+		</ul>
+	</div>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

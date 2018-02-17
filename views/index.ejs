@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Straw Poll Clone</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
@@ -10,10 +11,8 @@
 
     <script type="text/javascript" src="./scripts.js" async defer></script>
 </head>
-<body>
-	<header>
-		<h1>Straw Poll Clone</h1>
-	</header>
+<body class="blue-grey lighten-5">
+	<header class="blue-grey"></header>
 
 	<div id="error-modal" class="modal">
 		<div class="modal-content">
@@ -29,10 +28,9 @@
 	</div>
 
 	<main>
-
 		<form method="post" action="/api/polls/" class="poll-container card-panel">
 			<div class="input-field">
-				<input placeholder="poll-question" id="poll-question" type="text" name="title">
+				<input placeholder="Poll Question" id="poll-question" type="text" name="title">
 			</div>
 			<div class="input-field poll-option">
 				<input placeholder="Enter a poll option" type="text" name="option">
@@ -43,7 +41,7 @@
 			<div class="input-field poll-option">
 				<input placeholder="Enter a poll option" type="text" name="option">
 			</div>
-			<div>
+			<div class="mt2">
 				<input id="multi-select" class="filled-in" type="checkbox" name="multi" value="true"></input>
 				<label for="multi-select">Allow Multiple Answers</label>
 			</div>

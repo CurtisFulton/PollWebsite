@@ -9,7 +9,6 @@ body {
 	min-height: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: #dddddd;
 }
 
 header {
@@ -18,13 +17,14 @@ header {
 }
 
 .poll-container {
-	width: 40%;
+	width: 35em;
 	margin: auto;
-	margin-top: 1em;
+	margin-top: -3.5em;
 }
 
 #poll-question {
-	font-size: 2em;
+	font-size: 2.5em;
+	margin-bottom: 0.5em;
 }
 
 .modal {
@@ -35,5 +35,8 @@ header {
 .poll-option {
 	display: flex;
 	flex-direction: row;
-	margin-left: 1em;
+}
+
+.mt2 {
+	margin-top: 2em;
 }

@@ -2,15 +2,20 @@
 <html>
 <head>
 	<title><%= title %></title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"  media="screen,projection"/>
-</head>
-<body>
 
+	<link rel="stylesheet" href="./styles.css"/>
+
+    <script type="text/javascript" src="./scripts.js" async defer></script>
+</head>
+<body class="blue-grey lighten-5">
+	<header class="blue-grey"></header>
 
 	<form method="post" action="/api/polls/<%= id %>" class="poll-container card-panel">
-		<h1><%= title %></h1>
+		<h4><%= title %></h4>
 		<% for (var i = 0; i < options.length; i++) { %>
 			<div>
 				<% if (multi) { %>
@@ -21,10 +26,11 @@
 	      		<label for="<%= i %>"><%= options[i] %></label>
 			</div>
 		<% } %>
-		<input type="submit" class="btn submit-btn" value="Vote"/>
+		<input type="submit" class="btn submit-btn mt2" value="Vote"/>
 	</form>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script type="text/javascript"></script>
 </body>
 </html>
