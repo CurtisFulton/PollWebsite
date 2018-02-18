@@ -41,7 +41,7 @@ router.get('/:id/r', (req, res, next) => {
 });
 
 function requestPoll(id) {
-	var reqURL = 'http://localhost:3000/api/polls/' + id;
+	var reqURL = 'http://localhost:' + process.env.PORT + '/api/polls/' + id;
 
 	return new Promise((resolve, reject) => {
 		request(reqURL, function(err, response, body) {
