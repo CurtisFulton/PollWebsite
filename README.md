@@ -21,6 +21,50 @@ I started this project as a way to learn how API development works and also how 
 - PostgreSQL
 - RESTful API
 
+## Installation
+
+To use this on your own computer you need Node.js and PostgreSQL. 
+
+### The Database
+
+Firstly, the database requires 2 tables `poll` and `poll_vote`. 
+
+#### poll Table
+
+The poll table has 7 columns:
+
+- `poll_id` (PK) \- serial
+- `title` \- character varying(255)
+- `date_created` \- date
+- `multi` \- boolean
+- `dup_check` \- enum (`none`, `ip`, `cookie`)
+- `votes` \- integer[]
+- `options` \- character varying[] (255) 
+
+#### poll_vote Table
+
+The poll table has 3 columns:
+
+- `id` (PK) \- serial
+- `user_id` \- integer
+- `poll_id` (FK) \- integer.
+
+The poll_id column corresponds to the poll_id column in the poll table.
+
+### The server
+
+To set up the server, clone the git repository and run the command `npm install` to install all dependencies. You will need to add a .env file and fill the following environment variables in:
+
+- `DB_USER` \- Username for the database
+- `DB_HOST` \- Host of the database (Most likely localhost)
+- `DB_NAME` \- Name of the database
+- `DB_PASSWORD` \- Password for the database
+- `DB_PORT` \- Port for the database
+
+You can also set the `PORT` variable to change the port for the server if needed.
+
+Once all above steps are completed, run `node server.js` (or nodemon if installed) to start the server. You can access it by going to `localhost:3000`.
+
 ## API
 
 ### Summary
