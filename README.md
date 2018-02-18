@@ -67,6 +67,8 @@ Once all above steps are completed, run `node server.js` (or nodemon if installe
 
 ## API
 
+** Note: ** This project is still in development, so the API is not currently public yet.
+
 ### Summary
 
 For the project an API was needed to interact with the poll database. The API can be accessed via `http://poll.curtisfulton.me/api`. All resources will return data in JSON.
