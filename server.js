@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+require('dotenv').config();
+
 const bodyParser = require('body-parser');
 
 const cookieParser = require('cookie-parser');
@@ -32,6 +34,6 @@ app.use('/favicon.ico', () => {});
 app.use('/', poll);
 app.use('/api', api);
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => console.log("Listening on port " + port));
