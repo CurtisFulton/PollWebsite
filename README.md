@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-A simple anonymous polling website using [MaterializeCSS](http://materializecss.com/) to mimic the functionality of [StrawPoll](strawpoll.me). 
+A simple anonymous polling website using [MaterializeCSS](http://materializecss.com/) to mimic the functionality of [StrawPoll](strawpoll.me). This project was made with functionality as the main priority, so not a lot of time was spent on the UI/UX.
 
 ## Live example
 
@@ -67,7 +67,7 @@ Once all above steps are completed, run `node server.js` (or nodemon if installe
 
 ## API
 
-** Note: ** This project is still in development, so the API is not currently public yet.
+**Note:** This project is still in development, so the API is not currently public yet.
 
 ### Summary
 

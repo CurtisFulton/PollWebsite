@@ -49,6 +49,19 @@ header {
 	display: inline-block;
 }
 
+.results-percent {
+	margin-top: 0.5em;
+	height: 2em;
+	line-height: 2em;
+	overflow: hidden;
+}
+
+.percentage-bar {
+	display: inline-block;
+	height: 2em;
+	width: 90%;
+}
+
 @media (min-width: 40em) {
 	.poll-container {
 		width: 40em;

@@ -19,8 +19,14 @@
 		<ul class="collection mt2">
 			<% for (var i = 0; i < options.length; i++) { %>
 				<li class="collection-item">
-					<span><%= options[i] %>: </span>
-					<span class="right"><%= votes[i] %></span>
+					<div>
+						<span><%= options[i] %>: </span>
+						<span class="right"><%= votes[i] %></span>
+					</div>
+					<div class="results-percent">
+						<div class="percentage-bar blue-grey darken-3" style="transform: translateX(-<%= 100 - Math.round(votes[i] / totalVotes * 100, 2) || 100 %>%);"></div>
+						<span class="right"><%= Math.round(votes[i] / totalVotes * 100, 2) || 0 %>%</span>
+					</div>
 				</li>
 			<% } %>
 		</ul>
