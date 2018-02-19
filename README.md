@@ -103,7 +103,7 @@ Retrieve poll data from poll 1
 {
 	"poll_id": 1,
 	"title": "First poll",
-	"date_created": ,
+	"date_created": "2018-02-09T14:00:00.000Z",
 	"multi": false,
 	"dup_check": "ip",
 	"votes": [1, 10],
@@ -154,7 +154,7 @@ POST https://poll.curtisfulton.me/api
 {
 	"poll_id": 253,
 	"title": "Test Poll",
-	"date_created": ,
+	"date_created": "2018-02-16T14:00:00.000Z",
 	"multi": true,
 	"dup_check": "none",
 	"votes": [0, 0],
